@@ -15,7 +15,9 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 text-center text-white px-4">
-        <h1 className="text-6xl font-bold mb-6">Ice Cream Shop </h1>
+        <h1 className="text-6xl font-bold mb-6">
+          Delicious Ice Cream Made Fresh Daily
+        </h1>
         <p className="text-xl mb-8">Treat yourself to a scoop of happiness!</p>
 
         <Button

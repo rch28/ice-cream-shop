@@ -1,5 +1,5 @@
 "use client";
-import { Search, ShoppingCart, User } from "lucide-react";
+import { Search, ShoppingCart } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { useEffect, useState } from "react";
