@@ -41,7 +41,7 @@ const Navbar = () => {
           isSticky ? " py-4" : "py-4 sm:py-6 md:py-8"
         }`}
       >
-        <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row md:items-center md:justify-between lg:justify-around px-3">
+        <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row md:items-center md:justify-between lg:justify-around px-3">
           <div className="flex gap-1  justify-center md:justify-start ">
             <Link href="/" className="">
               <Image

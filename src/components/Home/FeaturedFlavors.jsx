@@ -35,7 +35,7 @@ const FeaturedFlavors = () => {
     {
       name: "Coconut",
       image:
-        "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1495121482123-ea92d0a1df0d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Q29jb251dCUyMGljZSUyMGNyZWFtc3xlbnwwfHwwfHx8MA%3D%3D",
       price: "Rs. 549",
     },
     {
@@ -57,7 +57,7 @@ const FeaturedFlavors = () => {
         <h2 className="text-4xl font-bold text-center mb-16">
           Featured Flavors
         </h2>
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 lg:px-0">
           {featuredItems.map(({ name, image, price }, index) => (
             <FeaturedCard key={index} name={name} image={image} price={price} />
           ))}
