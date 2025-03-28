@@ -1,5 +1,5 @@
 "use client";
-import { Search, ShoppingCart } from "lucide-react";
+import { Menu, Search, ShoppingCart } from "lucide-react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ const navLinks = [
 ];
 const Navbar = () => {
   const [isSticky, setSetIsSticky] = useState(false);
-
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 30) {
@@ -104,7 +104,7 @@ const Navbar = () => {
 
       {/* //* --- desktop navbar ---  */}
       <nav
-        className={`hidden md:block bg-pink-200 text-black transition-all duration-300 ease-linear ${
+        className={`hidden md:block bg-secondary/20 text-black transition-all duration-300 ease-linear ${
           isSticky ? "h-10" : "h-12"
         }`}
       >
@@ -127,8 +127,36 @@ const Navbar = () => {
         </div>
       </nav>
       {/* //* --- mobile navbar ---  */}
-
+      <nav className="flex md:hidden bg-secondary/20 text-white">
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden relative z-50 w-8 h-8 flex items-center justify-center ml-2"
+          aria-label="Toggle menu"
+        >
+          <Menu className="text-primary" />
+        </button>
+      </nav>
       {/* //* navbar list  */}
+      <div
+        className={`fixed inset-0 bg-secondary/95 text-white backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8 transition-all duration-500 ease-in-out lg:hidden
+          ${
+            mobileMenuOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }
+        `}
+      >
+        {navLinks.map((link) => (
+          <Link
+            key={link.id}
+            href={link.path}
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-2xl font-medium"
+          >
+            {link.name}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
