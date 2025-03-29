@@ -131,8 +131,9 @@ const Navbar = () => {
               <Link
                 key={id}
                 href={path}
-                className={`px-3 h-full flex items-center hover:bg-pink-400 font-semibold hover:text-white ${
-                  path === pathname && "bg-pink-400/60"
+                className={`px-3 h-full flex items-center hover:bg-pink-400 font-semibold hover:text-white  ${
+                  path === pathname &&
+                  "bg-pink-400/60 transition-all duration-300 ease-in-out"
                 } `}
               >
                 {name}
