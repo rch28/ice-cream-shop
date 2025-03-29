@@ -1,4 +1,5 @@
 import { Factory, Heart, Star } from "lucide-react";
+import Image from "next/image";
 
 const AboutUs = () => {
   const stats = [
@@ -109,24 +110,25 @@ const AboutUs = () => {
             Meet Our Team
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
+            {team.map(({ image, name, role, description }, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden"
+                className="bg-white rounded-2xl shadow-lg shadow-gray-300 overflow-hidden"
               >
                 <div className="h-64">
-                  <img
-                    src={member.image}
-                    alt={member.name}
+                  <Image
+                    src={image}
+                    alt={name}
+                    width={500}
+                    height={500}
+                    priority
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-                  <p className="text-pink-500 font-medium mb-3">
-                    {member.role}
-                  </p>
-                  <p className="text-gray-600">{member.description}</p>
+                  <h3 className="text-xl font-semibold mb-2">{name}</h3>
+                  <p className="text-pink-500 font-medium mb-3">{role}</p>
+                  <p className="text-gray-600">{description}</p>
                 </div>
               </div>
             ))}

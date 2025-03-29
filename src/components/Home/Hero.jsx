@@ -1,14 +1,18 @@
 import { ChevronRight } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
+import Image from "next/image";
 
 const Hero = () => {
   return (
     <header className="relative h-96 flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&q=80"
           alt="Ice cream background"
+          height={400}
+          width={400}
+          priority
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40" />
