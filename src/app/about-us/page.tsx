@@ -1,3 +1,4 @@
+import HeaderText from "@/components/Common/HeaderText";
 import { Factory, Heart, Star } from "lucide-react";
 import Image from "next/image";
 
@@ -66,7 +67,8 @@ const AboutUs = () => {
         <div className="bg-white rounded-2xl shadow-lg p-12 mb-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
+              <HeaderText title="Our Mission" className="mb-6" />
+
               <p className="text-gray-600 mb-6">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Veritatis ut consequatur similique, ea doloribus exercitationem
@@ -106,9 +108,7 @@ const AboutUs = () => {
 
         {/* Team */}
         <div>
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Meet Our Team
-          </h2>
+          <HeaderText title="Meet Our Team" className="mb-12" />
           <div className="grid md:grid-cols-3 gap-8">
             {team.map(({ image, name, role, description }, index) => (
               <div

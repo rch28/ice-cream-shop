@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OrderSummary from "@/components/Order/OrderSummary";
 import Cart from "./Cart";
 import { useStore } from "@/store/store";
+import HeaderText from "@/components/Common/HeaderText";
 
 // Mock data for ice cream flavors
 const flavors = [
@@ -97,6 +98,8 @@ export type CartItem = {
 };
 
 const OrderPage = () => {
+  const searchParams = useSearchParams();
+  const tab = searchParams.get("tab");
   const {
     cart,
     addToCart,
@@ -116,17 +119,24 @@ const OrderPage = () => {
   return (
     <div className="container px-4 py-12 mx-auto">
       <div className="flex items-center mb-8">
-        <h1 className="text-3xl font-bold ml-4">Order Ice Cream</h1>
+        <HeaderText title="Order Ice Cream" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           {/* Tabs */}
-          <Tabs defaultValue="flavors" className="w-full">
+          <Tabs
+            defaultValue={tab === "2" ? "cart" : "flavors"}
+            className="w-full"
+          >
             {/* list */}
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="flavors">Choose Flavors</TabsTrigger>
-              <TabsTrigger value="cart">Your Cart ({cart.length})</TabsTrigger>
+              <TabsTrigger value="flavors" className="cursor-pointer">
+                Choose Flavors
+              </TabsTrigger>
+              <TabsTrigger value="cart" className="cursor-pointer">
+                Your Cart ({cart.length})
+              </TabsTrigger>
             </TabsList>
             {/* Contents */}
             <TabsContent value="flavors" className="mt-4">

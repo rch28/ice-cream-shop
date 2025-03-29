@@ -1,7 +1,9 @@
 "use client";
+import HeaderText from "@/components/Common/HeaderText";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/store/store";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export const categories = [
   {
@@ -95,12 +97,11 @@ export const categories = [
 ];
 const FlavorsPage = () => {
   const { addToCart } = useStore();
+  const router = useRouter();
   return (
     <div className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-16">
-          Our Ice Cream Flavors
-        </h1>
+        <HeaderText title="Our Ice Cream Flavors" />
 
         {categories.map(({ name, flavors }, index) => (
           <div key={index} className="mb-20">
@@ -132,6 +133,7 @@ const FlavorsPage = () => {
                       <p className="text-gray-600 mb-4">{description}</p>
                       <Button
                         onClick={() => {
+                          router.push("/order?tab=2");
                           addToCart({
                             id,
                             name,
