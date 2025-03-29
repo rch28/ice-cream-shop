@@ -1,5 +1,4 @@
 "use client";
-import HeaderText from "@/components/Common/HeaderText";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/store/store";
 import Image from "next/image";
@@ -101,8 +100,9 @@ const FlavorsPage = () => {
   return (
     <div className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <HeaderText title="Our Ice Cream Flavors" />
-
+        <h1 className="text-4xl font-bold mb-6 text-center">
+          Our Ice Cream Flavors
+        </h1>
         {categories.map(({ name, flavors }, index) => (
           <div key={index} className="mb-20">
             <h2 className="text-3xl font-bold mb-8">{name}</h2>

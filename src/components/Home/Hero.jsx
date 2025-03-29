@@ -2,6 +2,7 @@ import { ChevronRight } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -24,12 +25,14 @@ const Hero = () => {
         </h1>
         <p className="text-xl mb-8">Treat yourself to a scoop of happiness!</p>
 
-        <Button
-          variant="secondary"
-          className="bg-secondary hover:bg-secondary-foreground text-white !px-8 !py-3 rounded-full !font-semibold transition-colors flex items-center gap-2 h-12 cursor-pointer"
-        >
-          Order Now <ChevronRight size={20} />
-        </Button>
+        <Link href="/flavors">
+          <Button
+            variant="secondary"
+            className="bg-secondary hover:bg-secondary-foreground text-white !px-8 !py-3 rounded-full !font-semibold transition-colors flex items-center gap-2 h-12 cursor-pointer"
+          >
+            Order Now <ChevronRight size={20} />
+          </Button>
+        </Link>
       </div>
     </header>
   );
