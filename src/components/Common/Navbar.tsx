@@ -100,7 +100,7 @@ const Navbar = () => {
                   <ShoppingCart className="h-5 w-5 " />
                   <span className="sr-only">Cart</span>
                 </Button>
-                <span className="text-red-600 font-bold text-sm absolute top-0 right-0">
+                <span className="text-red-600 font-bold text-sm absolute top-0 right-1">
                   {getCartCount()}
                 </span>
               </Link>
