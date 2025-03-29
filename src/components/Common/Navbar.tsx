@@ -87,13 +87,21 @@ const Navbar = () => {
           </div>
 
           <div className="flex justify-center md:justify-end">
-            <div className="flex ml-3 gap-3 sm:gap-3">
-              <Link href="/order">
-                <Button variant="outline" size="icon">
-                  <ShoppingCart className="h-5 w-5" />
+            <div className="flex ml-3 gap-3 sm:gap-3 ">
+              <Link href="/order" className="relative">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="cursor-pointer"
+                >
+                  <ShoppingCart className="h-5 w-5 " />
                   <span className="sr-only">Cart</span>
                 </Button>
+                <span className="text-red-600 font-bold text-sm absolute top-0 right-0">
+                  3
+                </span>
               </Link>
+
               <Link href="/order">
                 <Button variant="default" className="cursor-pointer">
                   Order Now

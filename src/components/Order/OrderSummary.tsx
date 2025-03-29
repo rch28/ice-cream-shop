@@ -5,6 +5,7 @@ import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
 import { Card, CardContent } from "../ui/card";
 import { Input } from "../ui/input";
+import { DeliveryMethod } from "@/store/store";
 
 const OrderSummary = ({
   subtotal,
@@ -16,8 +17,8 @@ const OrderSummary = ({
   subtotal: number;
   total: number;
   cart: any[];
-  deliveryMethod: string;
-  setDeliveryMethod: (value: string) => void;
+  deliveryMethod: DeliveryMethod;
+  setDeliveryMethod: (value: DeliveryMethod) => void;
 }) => {
   return (
     <div>
@@ -35,7 +36,9 @@ const OrderSummary = ({
               <h3 className="font-medium mb-2">Delivery Method</h3>
               <RadioGroup
                 value={deliveryMethod}
-                onValueChange={setDeliveryMethod}
+                onValueChange={(value) =>
+                  setDeliveryMethod(value as DeliveryMethod)
+                }
                 className="space-y-2"
               >
                 <div className="flex items-center space-x-2">

@@ -15,43 +15,82 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OrderSummary from "@/components/Order/OrderSummary";
 import Cart from "./Cart";
+import { useStore } from "@/store/store";
 
 // Mock data for ice cream flavors
 const flavors = [
   {
     id: 1,
-    name: "Vanilla Bean",
+    name: "Madagascar Vanilla",
     description:
-      "Rich and creamy vanilla ice cream with real vanilla bean specks.",
+      "Rich and creamy vanilla made with premium Madagascar bourbon vanilla beans",
+    price: 499,
     image:
       "https://images.unsplash.com/photo-1570197788417-0e82375c9371?auto=format&fit=crop&q=80",
-    price: 499,
   },
   {
     id: 2,
-    name: "Chocolate Fudge",
-    description:
-      "Decadent chocolate ice cream with fudge swirls and chocolate chunks.",
+    name: "Belgian Chocolate",
+    description: "Smooth dark chocolate made with imported Belgian cocoa",
+    price: 549,
     image:
       "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&q=80",
-    price: 549,
   },
   {
     id: 3,
-    name: "Strawberry ",
-    description:
-      "Creamy strawberry ice cream with real strawberry pieces and a berry .",
+    name: "Strawberry Fields",
+    description: "Fresh strawberries blended into our creamy base",
+    price: 529,
     image:
       "https://images.unsplash.com/photo-1557142046-c704a3adf364?auto=format&fit=crop&q=80",
-    price: 529,
   },
   {
     id: 4,
-    name: "Mint Chip",
-    description: "Refreshing mint ice cream loaded with chocolate chips.",
+    name: "Salted Caramel Swirl",
+    description: "Caramel ice cream with sea salt and caramel ribbons",
+    price: 649,
+    image:
+      "https://images.unsplash.com/photo-1477505982272-ead89926a577?auto=format&fit=crop&q=80",
+  },
+  {
+    id: 5,
+    name: "Pistachio Dream",
+    description: "Roasted pistachios in our signature cream base",
+    price: 699,
+    image:
+      "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&q=80",
+  },
+  {
+    id: 6,
+    name: "Mint Chocolate Symphony",
+    description: "Fresh mint with dark chocolate chips",
+    price: 599,
     image:
       "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?auto=format&fit=crop&q=80",
-    price: 549,
+  },
+  {
+    id: 7,
+    name: "Pumpkin Spice",
+    description: "Fall favorite with real pumpkin and warm spices",
+    price: 649,
+    image:
+      "https://images.unsplash.com/photo-1488900128323-21503983a07e?auto=format&fit=crop&q=80",
+  },
+  {
+    id: 8,
+    name: "Summer Berry Sorbet",
+    description: "Refreshing blend of seasonal berries",
+    price: 599,
+    image:
+      "https://images.unsplash.com/photo-1505394033641-40c6ad1178d7?auto=format&fit=crop&q=80",
+  },
+  {
+    id: 9,
+    name: "Eggnog Delight",
+    description: "Holiday special with nutmeg and cinnamon",
+    price: 649,
+    image:
+      "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&q=80",
   },
 ];
 
@@ -66,65 +105,14 @@ export type CartItem = {
 const OrderPage = () => {
   const searchParams = useSearchParams();
   const flavorId = searchParams.get("flavor");
-
-  const [cart, setCart] = useState<CartItem[]>(() => {
-    if (flavorId) {
-      const flavor = flavors.find((f) => f.id === Number.parseInt(flavorId));
-      if (flavor) {
-        return [
-          {
-            id: flavor.id,
-            name: flavor.name,
-            price: flavor.price,
-            quantity: 1,
-            image: flavor.image,
-          },
-        ];
-      }
-    }
-    return [];
-  });
-
-  const [deliveryMethod, setDeliveryMethod] = useState("delivery");
-
-  const addToCart = (flavor: (typeof flavors)[0]) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === flavor.id);
-      // If the item already exists in the cart, increase its quantity
-      // Otherwise, add it to the cart with quantity 1
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.id === flavor.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        return [
-          ...prevCart,
-          {
-            id: flavor.id,
-            name: flavor.name,
-            price: flavor.price,
-            quantity: 1,
-            image: flavor.image,
-          },
-        ];
-      }
-    });
-  };
-
-  const removeFromCart = (id: number) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
-  };
-
-  const updateQuantity = (id: number, newQuantity: number) => {
-    if (newQuantity < 1) return;
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
+  const {
+    cart,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    deliveryMethod,
+    setDeliveryMethod,
+  } = useStore();
 
   const subtotal = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -142,7 +130,7 @@ const OrderPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           {/* Tabs */}
-          <Tabs defaultValue={flavorId ? "cart" : "flavor"} className="w-full">
+          <Tabs defaultValue="flavors" className="w-full">
             {/* list */}
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="flavors">Choose Flavors</TabsTrigger>
@@ -170,14 +158,16 @@ const OrderPage = () => {
                           <div className="flex justify-between">
                             <h3 className="font-bold">{flavor.name}</h3>
                             <span className="font-bold">
-                              Rs. {flavor.price}
+                              RS . {flavor.price}
                             </span>
                           </div>
                           <p className="text-muted-foreground text-sm mt-1 line-clamp-2">
                             {flavor.description}
                           </p>
                           <Button
-                            onClick={() => addToCart(flavor)}
+                            onClick={() =>
+                              addToCart({ ...flavor, quantity: 1 })
+                            }
                             size="lg"
                             className="mt-2 bg-secondary hover:bg-secondary-foreground text-white px-4 rounded-full font-semibold transition-colors cursor-pointer"
                           >
