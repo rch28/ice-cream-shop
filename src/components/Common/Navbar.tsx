@@ -104,7 +104,7 @@ const Navbar = () => {
 
       {/* //* --- desktop navbar ---  */}
       <nav
-        className={`hidden md:block bg-secondary/20 text-black transition-all duration-300 ease-linear ${
+        className={`hidden md:block bg-secondary/50 text-black transition-all duration-300 ease-linear ${
           isSticky ? "h-10" : "h-12"
         }`}
       >
@@ -127,7 +127,7 @@ const Navbar = () => {
         </div>
       </nav>
       {/* //* --- mobile navbar ---  */}
-      <nav className="flex md:hidden bg-secondary/20 text-white">
+      <nav className="flex md:hidden bg-secondary/50 text-white">
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden relative z-50 w-8 h-8 flex items-center justify-center ml-2"
