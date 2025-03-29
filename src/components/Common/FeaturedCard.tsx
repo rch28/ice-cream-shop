@@ -12,7 +12,7 @@ const FeaturedCard = ({
 }) => {
   return (
     <div className="group cursor-pointer  relative">
-      <div className="aspect-square rounded-2xl shadow shadow-gray-200 drop-shadow-2xl overflow-hidden mb-4">
+      <div className="aspect-square rounded-2xl shadow-md shadow-gray-300 drop-shadow-2xl overflow-hidden mb-4">
         <Image
           src={image}
           alt={name}
