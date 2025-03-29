@@ -5,7 +5,7 @@ import { useStore } from "@/store/store";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export const categories = [
+const categories = [
   {
     name: "Classic Flavors",
     flavors: [
