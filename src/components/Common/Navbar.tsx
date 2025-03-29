@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Logo from "../../../public/logo.png";
+import { usePathname } from "next/navigation";
 const navLinks = [
   { id: "1", name: "Home", path: "/" },
   { id: "2", name: "Flavors", path: "/flavors" },
@@ -12,6 +13,7 @@ const navLinks = [
   { id: "4", name: "About Us", path: "/about-us" },
 ];
 const Navbar = () => {
+  const pathname = usePathname();
   const [isSticky, setSetIsSticky] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   useEffect(() => {
@@ -114,13 +116,15 @@ const Navbar = () => {
               isSticky ? "h-10" : "h-12"
             }`}
           >
-            {navLinks.map((link) => (
+            {navLinks.map(({ id, path, name }) => (
               <Link
-                key={link.id}
-                href={link.path}
-                className="px-3 h-full flex items-center hover:bg-pink-400 font-semibold hover:text-white"
+                key={id}
+                href={path}
+                className={`px-3 h-full flex items-center hover:bg-pink-400 font-semibold hover:text-white ${
+                  path === pathname && "bg-pink-400/60"
+                } `}
               >
-                {link.name}
+                {name}
               </Link>
             ))}
           </div>
