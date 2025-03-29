@@ -25,7 +25,7 @@ const Hero = () => {
         </h1>
         <p className="text-xl mb-8">Treat yourself to a scoop of happiness!</p>
 
-        <Link href="/flavors">
+        <Link href="/order">
           <Button
             variant="secondary"
             className="bg-secondary hover:bg-secondary-foreground text-white !px-8 !py-3 rounded-full !font-semibold transition-colors flex items-center gap-2 h-12 cursor-pointer"
