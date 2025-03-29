@@ -28,7 +28,7 @@ const Hero = () => {
         <Link href="/order">
           <Button
             variant="secondary"
-            className="bg-secondary hover:bg-secondary-foreground text-white !px-8 !py-3 rounded-full !font-semibold transition-colors flex items-center gap-2 h-12 cursor-pointer"
+            className="bg-secondary hover:bg-secondary-foreground text-white !px-8 !py-3 rounded-full !font-semibold transition-colors flex items-center gap-2 h-12 cursor-pointer mx-auto"
           >
             Order Now <ChevronRight size={20} />
           </Button>
