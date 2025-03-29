@@ -100,7 +100,14 @@ export type CartItem = {
 
 const OrderPage = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          {" "}
+          ...
+        </div>
+      }
+    >
       <OrderContent />
     </Suspense>
   );
