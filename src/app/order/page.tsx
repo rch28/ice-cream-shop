@@ -11,6 +11,7 @@ import OrderSummary from "@/components/Order/OrderSummary";
 import Cart from "./Cart";
 import { useStore } from "@/store/store";
 import HeaderText from "@/components/Common/HeaderText";
+import { Suspense } from "react";
 
 // Mock data for ice cream flavors
 const flavors = [
@@ -98,6 +99,13 @@ export type CartItem = {
 };
 
 const OrderPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <OrderContent />
+    </Suspense>
+  );
+};
+const OrderContent = () => {
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
   const {
