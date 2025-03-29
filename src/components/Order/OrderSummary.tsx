@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
@@ -5,7 +6,7 @@ import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
 import { Card, CardContent } from "../ui/card";
 import { Input } from "../ui/input";
-import { DeliveryMethod } from "@/store/store";
+import { DeliveryMethod, useStore } from "@/store/store";
 
 const OrderSummary = ({
   subtotal,
@@ -20,6 +21,7 @@ const OrderSummary = ({
   deliveryMethod: DeliveryMethod;
   setDeliveryMethod: (value: DeliveryMethod) => void;
 }) => {
+  const { clearCart } = useStore();
   return (
     <div>
       <Card>
@@ -74,7 +76,10 @@ const OrderSummary = ({
               className="w-full bg-secondary hover:bg-secondary-foreground text-white px-4  font-semibold transition-colors cursor-pointer"
               size="lg"
               disabled={cart.length === 0}
-              onClick={() => alert("Order placed successfully!")}
+              onClick={() => {
+                clearCart();
+                alert("Order placed successfully!");
+              }}
             >
               Place Order
             </Button>

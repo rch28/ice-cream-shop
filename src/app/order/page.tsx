@@ -1,17 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { ArrowLeft, Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OrderSummary from "@/components/Order/OrderSummary";
 import Cart from "./Cart";
@@ -103,8 +97,6 @@ export type CartItem = {
 };
 
 const OrderPage = () => {
-  const searchParams = useSearchParams();
-  const flavorId = searchParams.get("flavor");
   const {
     cart,
     addToCart,

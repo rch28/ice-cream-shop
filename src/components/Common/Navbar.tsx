@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Logo from "../../../public/logo.png";
 import { usePathname } from "next/navigation";
+import { useStore } from "@/store/store";
 const navLinks = [
   { id: "1", name: "Home", path: "/" },
   { id: "2", name: "Flavors", path: "/flavors" },
@@ -16,6 +17,8 @@ const Navbar = () => {
   const pathname = usePathname();
   const [isSticky, setSetIsSticky] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { getCartCount } = useStore();
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 30) {
@@ -98,7 +101,7 @@ const Navbar = () => {
                   <span className="sr-only">Cart</span>
                 </Button>
                 <span className="text-red-600 font-bold text-sm absolute top-0 right-0">
-                  3
+                  {getCartCount()}
                 </span>
               </Link>
 

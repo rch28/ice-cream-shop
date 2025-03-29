@@ -10,7 +10,6 @@ export type CartItem = {
 };
 export type DeliveryMethod = "delivery" | "pickup";
 type State = {
-  count: number;
   cart: CartItem[];
   deliveryMethod: DeliveryMethod;
 };
@@ -19,12 +18,13 @@ type Action = {
   removeFromCart: (id: number) => void;
   updateQuantity: (id: number, quantity: number) => void;
   setDeliveryMethod: (method: DeliveryMethod) => void;
-  setCartCount: (count: number) => void;
+  getCartCount: () => number;
+  clearCart: () => void;
 };
 
 export const useStore = create(
   persist<State & Action>(
-    (set) => ({
+    (set, get) => ({
       count: 0,
       cart: [],
       deliveryMethod: "delivery",
@@ -51,8 +51,8 @@ export const useStore = create(
           ),
         })),
       setDeliveryMethod: (method) => set({ deliveryMethod: method }),
-      //   cart length
-      setCartCount: (count) => set({ count }),
+      getCartCount: () => get().cart.length,
+      clearCart: () => set({ cart: [] }),
     }),
     {
       name: "cart-storage",
