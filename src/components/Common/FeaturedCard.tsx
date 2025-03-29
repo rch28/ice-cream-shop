@@ -1,7 +1,15 @@
 import Image from "next/image";
 import React from "react";
 
-const FeaturedCard = ({ image, name, price }) => {
+const FeaturedCard = ({
+  image,
+  name,
+  price,
+}: {
+  image: string;
+  name: string;
+  price: string;
+}) => {
   return (
     <div className="group cursor-pointer  relative">
       <div className="aspect-square rounded-2xl shadow shadow-gray-200 drop-shadow-2xl overflow-hidden mb-4">

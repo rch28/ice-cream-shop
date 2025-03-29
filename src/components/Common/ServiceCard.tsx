@@ -1,6 +1,14 @@
 import React from "react";
 
-const ServiceCard = ({ title, description, icon }) => {
+const ServiceCard = ({
+  title,
+  description,
+  icon,
+}: {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+}) => {
   return (
     <div className="bg-white p-8 rounded-2xl shadow-lg text-center">
       <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
