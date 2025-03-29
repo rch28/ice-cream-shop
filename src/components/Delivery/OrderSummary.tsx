@@ -1,8 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "../ui/card";
 import { Separator } from "../ui/separator";
-
-import { mockOrder } from "@/app/track-delivery/page";
+import { mockOrder } from "@/app/data/mockOrder";
 
 const OrderSummaryCard = () => {
   return (

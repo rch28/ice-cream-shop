@@ -2,7 +2,7 @@ import { CheckCircle2, Truck } from "lucide-react";
 import React from "react";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
-import { mockOrder } from "@/app/track-delivery/page";
+import { mockOrder } from "@/app/data/mockOrder";
 
 const TrackDelivery = ({
   setIsTracking,
