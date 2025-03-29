@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="border-t py-6 md:py-0 bg-primary text-primary-foreground px-4">
       <div className="container flex flex-col md:flex-row items-center justify-between gap-4 md:h-16">
         <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-          © 2025 Ice Cream Shop. All rights reserved.
+          © 2025 Ice Cream Company. All rights reserved.
         </p>
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
           <a href="/terms" className="hover:underline underline-offset-4">
