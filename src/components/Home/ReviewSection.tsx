@@ -32,7 +32,7 @@ const ReviewSection = () => {
   return (
     <>
       <section className="py-20 px-4 bg-gradient-to-b from-pink-50 to-purple-50">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className=" w-4/5 md:max-w-2xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-16">What Our Customers Say</h2>
           <Carousel>
             <CarouselContent>
