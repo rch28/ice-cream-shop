@@ -49,6 +49,7 @@ const TestimonialForm = ({
       !formData.rating
     ) {
       setErrors("Please fill in all fields.");
+      setTimeout(() => setErrors(""), 4000);
       return;
     }
     setIsSubmitting(true);
@@ -60,7 +61,8 @@ const TestimonialForm = ({
           "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop&crop=faces",
       };
 
-      setReviews((prev) => [...prev, newReview]);
+      setReviews((prev) => [newReview, ...prev]);
+
       setFormData({
         name: "",
         title: "",

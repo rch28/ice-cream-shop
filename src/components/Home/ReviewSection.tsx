@@ -51,9 +51,9 @@ const ReviewSection = () => {
               {reviews.map((review, index) => (
                 <CarouselItem
                   key={index}
-                  className="flex flex-col items-center justify-center p-8 bg-white rounded-lg shadow-lg mx-4"
+                  className="flex flex-col items-center justify-center p-2 bg-white  mx-4"
                 >
-                  <div className="flex flex-col items-center justify-center p-8 bg-white rounded-2xl shadow-lg mx-4 transform transition-all duration-300 hover:shadow-xl">
+                  <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-white rounded-2xl shadow-lg mx-4 transform transition-all duration-300 hover:shadow-xl">
                     <div className="relative mb-6">
                       <Image
                         src={review.avatar}
