@@ -133,7 +133,7 @@ const Navbar = () => {
                 key={id}
                 href={path}
                 className={`relative px-1 py-2 text-gray-800 font-medium transition-all duration-200
-                    hover:text-secondary-foreground group`}
+                    hover:text-black group`}
               >
                 {name}
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-secondary transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100" />
