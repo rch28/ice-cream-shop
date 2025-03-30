@@ -122,22 +122,21 @@ const Navbar = () => {
           isSticky ? "h-10" : "h-12"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 ">
-          <div
-            className={`flex items-center justify-start gap-4 ${
-              isSticky ? "h-10" : "h-12"
-            }`}
-          >
+        <div
+          className={`max-w-7xl flex items-center mx-auto px-4 ${
+            isSticky ? "h-10" : "h-12"
+          }`}
+        >
+          <div className="hidden md:flex items-center space-x-8">
             {navLinks.map(({ id, path, name }) => (
               <Link
                 key={id}
                 href={path}
-                className={`relative px-3 h-full flex items-center font-semibold text-black hover:text-pink-500 transition-all duration-300 ease-in-out ${
-                  path === pathname &&
-                  "text-pink-500 font-bold border-b-2 border-pink-500"
-                } `}
+                className={`relative px-1 py-2 text-gray-800 font-medium transition-all duration-200
+                    hover:text-secondary-foreground group`}
               >
                 {name}
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-secondary transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100" />
               </Link>
             ))}
           </div>
