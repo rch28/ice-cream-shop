@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -8,9 +9,10 @@ import {
 } from "@/components/ui/carousel";
 import { Star } from "lucide-react";
 import Image from "next/image";
+import TestimonialForm from "./TestimonialForm";
 
 const ReviewSection = () => {
-  const reviews = [
+  const [reviews, setReviews] = useState([
     {
       name: "John Doe",
       review:
@@ -38,7 +40,7 @@ const ReviewSection = () => {
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=faces",
       title: "Regular Customer",
     },
-  ];
+  ]);
   return (
     <>
       <section className="py-20 px-4 bg-gradient-to-b from-pink-50 to-purple-50">
@@ -89,6 +91,9 @@ const ReviewSection = () => {
             <CarouselPrevious className="cursor-pointer hover:bg-yellow-200" />
             <CarouselNext className="cursor-pointer hover:bg-yellow-200" />
           </Carousel>
+
+          {/* Testimonial Form */}
+          <TestimonialForm setReviews={setReviews} />
         </div>
       </section>
     </>
