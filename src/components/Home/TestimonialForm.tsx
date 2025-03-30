@@ -15,7 +15,7 @@ const TestimonialForm = ({
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-
+  const [errors, setErrors] = useState("");
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -35,6 +35,15 @@ const TestimonialForm = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (
+      !formData.name ||
+      !formData.review ||
+      !formData.title ||
+      !formData.rating
+    ) {
+      setErrors("Please fill in all fields.");
+      return;
+    }
     setIsSubmitting(true);
 
     try {
@@ -56,12 +65,13 @@ const TestimonialForm = ({
     } catch (error) {
       console.error("Error submitting review:", error);
     } finally {
+      setErrors("");
       setIsSubmitting(false);
     }
   };
   return (
     <>
-      <div className="mt-20 max-w-xl mx-auto">
+      <div className="mt-20 max-w-xl mx-auto z-10 relative">
         <h3 className="text-2xl font-bold mb-8">Share Your Experience</h3>
         <form
           onSubmit={handleSubmit}
@@ -78,25 +88,87 @@ const TestimonialForm = ({
               type="text"
               id="name"
               name="name"
-              required
               value={formData.name}
               onChange={handleInputChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-200 focus:border-pink-300 transition-colors"
               placeholder="John Smith"
             />
           </div>
+          <div>
+            <label
+              htmlFor="title"
+              className="block text-left text-sm font-medium text-gray-700 mb-1"
+            >
+              Your Title
+            </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-200 focus:border-pink-300 transition-colors"
+              placeholder="Ice Cream Enthusiast"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="review"
+              className="block text-left text-sm font-medium text-gray-700 mb-1"
+            >
+              Your Review
+            </label>
+            <textarea
+              id="review"
+              name="review"
+              value={formData.review}
+              onChange={handleInputChange}
+              rows={4}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-200 focus:border-pink-300 transition-colors"
+              placeholder="Share your experience with our ice cream..."
+            />
+          </div>
+          <div>
+            <label className="block text-left text-sm font-medium text-gray-700 mb-2">
+              Rating
+            </label>
+            <div className="flex gap-2">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  type="button"
+                  onClick={() => handleRatingChange(star)}
+                  className="focus:outline-none"
+                >
+                  <Star
+                    className={`w-8 h-8 ${
+                      star <= formData.rating
+                        ? "text-yellow-400 fill-current"
+                        : "text-gray-200 fill-current"
+                    } transition-colors`}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full py-3 px-6 text-white font-semibold rounded-lg shadow-md 
+            className={`w-full py-3 px-6 text-white font-semibold rounded-full shadow-md  cursor-pointer
                 ${
-                  isSubmitting ? "bg-pink-300" : "bg-pink-500 hover:bg-pink-600"
+                  isSubmitting
+                    ? "bg-pink-300"
+                    : "bg-secondary hover:bg-secondary-foreground"
                 } 
                 transition-colors duration-200`}
           >
             {isSubmitting ? "Submitting..." : "Submit Review"}
           </button>
-
+          {errors && (
+            <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-lg">
+              {errors}
+            </div>
+          )}
           {showSuccess && (
             <div className="mt-4 p-4 bg-green-100 text-green-700 rounded-lg">
               Thank you for your review! It has been added successfully.
