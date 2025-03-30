@@ -33,6 +33,17 @@ const MobileMenu = ({
     return () => window.removeEventListener("keydown", handleEscape);
   }, [setMobileMenuOpen]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setMobileMenuOpen]);
   // Prevent scrolling when menu is open
   useEffect(() => {
     if (mobileMenuOpen) {

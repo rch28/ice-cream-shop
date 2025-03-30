@@ -118,7 +118,7 @@ const Navbar = () => {
 
       {/* //* --- desktop navbar ---  */}
       <nav
-        className={`hidden md:block bg-secondary/50 text-black transition-all duration-300 ease-linear ${
+        className={`hidden md:block bg-gray-200 border-t text-black transition-all duration-300 ease-linear ${
           isSticky ? "h-10" : "h-12"
         }`}
       >
@@ -127,15 +127,17 @@ const Navbar = () => {
             isSticky ? "h-10" : "h-12"
           }`}
         >
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 py-1">
             {navLinks.map(({ id, path, name }) => (
               <Link
                 key={id}
                 href={path}
-                className={`relative px-1 py-2 text-gray-800 font-medium transition-all duration-200
+                className={`relative px-1 py-1 text-gray-800 font-medium transition-all duration-200
                     hover:text-black group`}
               >
-                <span className={`${path === pathname ? "text-black" : ""}`}>
+                <span
+                  className={`${path === pathname ? "text-secondary" : ""}`}
+                >
                   {name}
                 </span>
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-secondary transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100" />
