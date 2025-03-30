@@ -7,6 +7,7 @@ import Image from "next/image";
 import Logo from "../../../public/logo.png";
 import { usePathname } from "next/navigation";
 import { useStore } from "@/store/store";
+import MobileMenu from "./MobileMenu";
 const navLinks = [
   { id: "1", name: "Home", path: "/" },
   { id: "2", name: "Flavors", path: "/flavors" },
@@ -34,11 +35,22 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <div
-      className={` bg-white z-50 w-full transition-all duration-300 ease-linear   ${
-        isSticky ? "sticky top-0 left-0 " : " block"
+      className={`bg-white z-50 w-full transition-all duration-300 ease-linear ${
+        isSticky ? "sticky top-0 left-0 shadow-md bg-opacity-95" : "block"
       } `}
     >
       <div
@@ -55,7 +67,7 @@ const Navbar = () => {
                 width={100}
                 height={100}
                 priority
-                className={` transition-all duration-300 ease-linear cursor-pointer  ${
+                className={`transition-all duration-300 ease-linear cursor-pointer hover:scale-105 ${
                   isSticky ? "h-12 w-12" : "h-16 w-16"
                 }`}
               />
@@ -67,7 +79,7 @@ const Navbar = () => {
                   isSticky ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl"
                 } `}
               >
-                Ice Cream Shop
+                Ice Cream Company
               </Link>
               <p
                 className={` font-bold text-gray-600 transition-all duration-300 ease-linear ${
@@ -85,7 +97,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder={"Search"}
-              className="w-full pl-10 pr-4 py-2 focus:outline-none rounded-sm transition ease-linear  shadow-sm border border-gray-300 focus:border-gray-400"
+              className="w-full pl-10 pr-4 py-2 focus:outline-none rounded-full shadow-sm border border-gray-300 focus:border-gray-400 bg-gray-100"
             />
           </div>
 
@@ -131,9 +143,9 @@ const Navbar = () => {
               <Link
                 key={id}
                 href={path}
-                className={`px-3 h-full flex items-center hover:bg-pink-400 font-semibold hover:text-white  ${
+                className={`relative px-3 h-full flex items-center font-semibold text-gray-700 hover:text-pink-500 transition-all duration-300 ease-in-out ${
                   path === pathname &&
-                  "bg-pink-400/60 transition-all duration-300 ease-in-out"
+                  "text-pink-500 font-bold border-b-2 border-pink-500"
                 } `}
               >
                 {name}
@@ -143,18 +155,37 @@ const Navbar = () => {
         </div>
       </nav>
       {/* //* --- mobile navbar ---  */}
-      <nav className="flex md:hidden bg-secondary/50 text-white">
+      <div className="relative px-4">
+        {/* Mobile menu toggle button */}
+        <button
+          className="md:hidden cursor-pointer text-gray-700"
+          onClick={() => setMobileMenuOpen(true)}
+        >
+          <Menu className="h-8 w-8" />
+          <span className="sr-only">Open menu</span>
+        </button>
+
+        {/* Mobile menu */}
+        <MobileMenu
+          navLinks={navLinks}
+          mobileMenuOpen={mobileMenuOpen}
+          setMobileMenuOpen={setMobileMenuOpen}
+        />
+
+        {/* Rest of your navbar content */}
+      </div>
+      {/* <nav className="flex md:hidden bg-secondary/50 text-white">
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden relative z-50 w-8 h-8 flex items-center justify-center ml-2"
+          className="relative z-50 w-10 h-10 flex items-center justify-center ml-2 cursor-pointer"
           aria-label="Toggle menu"
         >
           <Menu className="text-primary" />
         </button>
-      </nav>
+      </nav> */}
       {/* //* navbar list  */}
-      <div
-        className={`fixed inset-0 bg-secondary/95 text-white backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8 transition-all duration-500 ease-in-out lg:hidden
+      {/* <div
+        className={`fixed inset-0 bg-secondary/95 text-white backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8 transition-all duration-500 ease-in-out md:hidden
           ${
             mobileMenuOpen
               ? "opacity-100 pointer-events-auto"
@@ -172,7 +203,7 @@ const Navbar = () => {
             {link.name}
           </Link>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
