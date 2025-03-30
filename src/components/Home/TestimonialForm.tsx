@@ -1,10 +1,17 @@
 import { Star } from "lucide-react";
 import React, { useState } from "react";
 
+type Review = {
+  name: string;
+  review: string;
+  rating: number;
+  avatar: string;
+  title: string;
+};
 const TestimonialForm = ({
   setReviews,
 }: {
-  setReviews: React.Dispatch<React.SetStateAction<any[]>>;
+  setReviews: React.Dispatch<React.SetStateAction<Review[]>>;
 }) => {
   const [formData, setFormData] = useState({
     name: "",
