@@ -75,11 +75,11 @@ const ReviewSection = () => {
                     </div>
                     <blockquote className="text-gray-600 italic relative px-6">
                       <span className="text-4xl text-pink-200 absolute top-0 left-0">
-                        "
+                        &ldquo;
                       </span>
                       <p className="mt-2">{review.review}</p>
                       <span className="text-4xl text-pink-200 absolute bottom-0 right-0">
-                        "
+                        &ldquo;
                       </span>
                     </blockquote>
                   </div>

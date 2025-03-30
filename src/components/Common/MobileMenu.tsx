@@ -22,7 +22,6 @@ const MobileMenu = ({
   mobileMenuOpen,
   setMobileMenuOpen,
 }: MobileMenuProps) => {
-  // Close menu when escape key is pressed
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
