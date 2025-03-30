@@ -143,7 +143,7 @@ const Navbar = () => {
               <Link
                 key={id}
                 href={path}
-                className={`relative px-3 h-full flex items-center font-semibold text-gray-700 hover:text-pink-500 transition-all duration-300 ease-in-out ${
+                className={`relative px-3 h-full flex items-center font-semibold text-black hover:text-pink-500 transition-all duration-300 ease-in-out ${
                   path === pathname &&
                   "text-pink-500 font-bold border-b-2 border-pink-500"
                 } `}
@@ -171,39 +171,7 @@ const Navbar = () => {
           mobileMenuOpen={mobileMenuOpen}
           setMobileMenuOpen={setMobileMenuOpen}
         />
-
-        {/* Rest of your navbar content */}
       </div>
-      {/* <nav className="flex md:hidden bg-secondary/50 text-white">
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="relative z-50 w-10 h-10 flex items-center justify-center ml-2 cursor-pointer"
-          aria-label="Toggle menu"
-        >
-          <Menu className="text-primary" />
-        </button>
-      </nav> */}
-      {/* //* navbar list  */}
-      {/* <div
-        className={`fixed inset-0 bg-secondary/95 text-white backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8 transition-all duration-500 ease-in-out md:hidden
-          ${
-            mobileMenuOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
-          }
-        `}
-      >
-        {navLinks.map((link) => (
-          <Link
-            key={link.id}
-            href={link.path}
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-2xl font-medium"
-          >
-            {link.name}
-          </Link>
-        ))}
-      </div> */}
     </div>
   );
 };
