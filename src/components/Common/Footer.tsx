@@ -46,7 +46,7 @@ const Footer = () => {
                 Home
               </Link>
               <Link
-                href="/about"
+                href="/about-us"
                 className="text-sm hover:underline underline-offset-4"
               >
                 About Us
