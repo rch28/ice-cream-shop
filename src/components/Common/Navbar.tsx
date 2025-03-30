@@ -123,7 +123,7 @@ const Navbar = () => {
         }`}
       >
         <div
-          className={`max-w-7xl flex items-center mx-auto px-4 ${
+          className={`max-w-7xl flex items-center mx-auto px-16 ${
             isSticky ? "h-10" : "h-12"
           }`}
         >
